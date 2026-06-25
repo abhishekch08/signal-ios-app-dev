@@ -27,8 +27,8 @@ struct HomeView:View{@ObservedObject var news:NewsVM;@ObservedObject var weather
  HStack{Text(news.selected.map(Topics.label) ?? "Today’s Briefing").font(.system(.title,design:.serif,weight:.semibold));Spacer();Text("\(news.articles.count)").foregroundStyle(Color.signal)}
  if let e=news.error{Text(e).padding().frame(maxWidth:.infinity,alignment:.leading).background(.orange.opacity(0.12),in:RoundedRectangle(cornerRadius:12))}
  if news.loading && news.articles.isEmpty{ProgressView().frame(maxWidth:.infinity,minHeight:220)}else if news.articles.isEmpty{ContentUnavailableView("No recent signal",systemImage:"newspaper",description:Text("Refresh or choose another topic."))}else{ForEach(news.articles){ArticleCard(article:$0,link:$link)}}}.padding(16)}.background(Color.paper.ignoresSafeArea()).navigationTitle("Signal").toolbar{ToolbarItemGroup(placement:.topBarTrailing){Button{Task{await news.load(refresh:true);await weather.load(refresh:true)}}label:{Image(systemName:"arrow.clockwise")};Button{picker=true}label:{Image(systemName:"slider.horizontal.3")}}}.refreshable{await news.load(refresh:true);await weather.load(refresh:true)}.task{await news.load();await weather.load()}.sheet(item:$link){Safari(url:$0.url).ignoresSafeArea()}.sheet(isPresented:$picker){TopicPicker()}}
- func chip(_ title:String,_ id:String?)->some View{Button{news.selected=id;Task{await news.load()}}label:{Text(title).font(.subheadline.bold()).padding(.horizontal,14).frame(height:38).background(news.selected==id ? Color.signal:Color.signal.opacity(0.12),in:Capsule()).foregroundStyle(news.selected==id ? .white:.primary)}}
-}
+ }
+func chip(_ title:String,_ id:String?)->some View{Button{news.selected=id;Task{await news.load()}}label:{Text(title).font(.subheadline.bold()).padding(.horizontal,14).frame(height:38).background(news.selected==id ? Color.signal:Color.signal.opacity(0.12),in:Capsule()).foregroundStyle(news.selected==id ? .white:.primary)}}
 }
 
 struct TopicPicker:View{@EnvironmentObject var prefs:Preferences;@Environment(\.dismiss)var dismiss
