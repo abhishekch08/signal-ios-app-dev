@@ -19,7 +19,7 @@
 		5BC9ECD84B1CB8B7EF1F851B /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		9C92D4FBDEC97386C966FB6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF04EC8ACC8278E977FE6500 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		C797828D0B76B7245881A2BF = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		C797828D0B76B7245881A2BF = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config/Config.xcconfig; sourceTree = "<group>"; };
 		38A007151ABE87CC01A5B6E9 = {isa = PBXFileReference; explicitFileType = wrapper.application; path = SignalIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 /* Begin PBXGroup section */
