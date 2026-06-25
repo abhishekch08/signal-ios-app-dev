@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f0e8">
+  <meta name="description" content="Signal — your credible, personalized newspaper.">
+  <title>Signal — Your personal newspaper</title>
+  <link rel="stylesheet" href="/styles.css?v=18">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Signal home">
+      <span class="brand-mark">S</span>
+      <span class="brand-name">SIGNAL</span>
+      <span class="edition">PERSONAL EDITION</span>
+    </a>
+    <div class="top-actions">
+      <button class="icon-button mobile-topics" id="openTopicsMobile" aria-label="Choose topics">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <button class="search-trigger" id="searchTrigger" aria-label="Search your news">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <span>Search your signal</span><kbd>/</kbd>
+      </button>
+      <button class="icon-button" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <button class="avatar" id="profileButton" aria-label="Open reading preferences">AK</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading"><span>YOUR SIGNALS</span><button id="editTopics">Edit</button></div>
+      <nav class="topic-nav" id="topicNav" aria-label="News topics"></nav>
+      <div class="trust-card">
+        <div class="trust-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.7 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.8 7.5-9.5V6L12 3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></div>
+        <div><strong>Credibility first</strong><p>Every story passes a strict publisher allowlist.</p><button id="viewStandards">Our standards →</button></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section class="masthead">
+        <div>
+          <p class="eyebrow" id="todayDate"></p>
+          <h1>Your intelligence, <em>distilled.</em></h1>
+          <p class="dek">A calm, high-signal briefing across the technologies, markets and ideas you care about.</p>
+        </div>
+        <div class="edition-actions">
+          <button class="refresh-now" id="refreshNow" aria-label="Fetch the latest news now">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.34 5.66M20 4v7h-7"/></svg>
+            <span>Refresh now</span>
+          </button>
+          <div class="edition-status">
+            <span class="live-dot"></span>
+            <div><strong id="editionLabel">Live edition</strong><span id="updatedAt">Connecting…</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="weather-card mobile-weather" data-weather-card aria-label="Live local weather">
+        <div class="weather-head"><span>LIVE WEATHER</span><button data-use-location>Use my location</button></div>
+        <form class="weather-search" data-weather-search>
+          <input data-weather-query type="search" placeholder="Search address, place or landmark" autocomplete="off" aria-label="Search weather location">
+          <button type="submit">Set</button>
+        </form>
+        <div class="weather-search-results" data-weather-results hidden></div>
+        <div class="weather-content">
+          <div class="weather-primary"><span class="weather-icon" data-weather-icon>◌</span><div><strong><span data-weather-temp>--</span>°</strong><small data-weather-condition>Connecting…</small></div></div>
+          <div class="weather-place"><div><b data-weather-place>New Delhi</b><small data-weather-coordinates>28.61°, 77.21°</small></div><span>Feels like <i data-weather-feels>--</i>°</span></div>
+          <div class="weather-stat aqi-stat" title="Uses the nearest fresh CPCB station when configured; otherwise calculates the overall Indian NAQI from a regional CAMS pollution model."><small>NAQI (IN) <em data-weather-aqi-type>CHECKING</em></small><b data-weather-aqi>--</b><span data-weather-aqi-label>Loading</span><span class="aqi-station" data-weather-aqi-note>Finding nearest station…</span><span class="aqi-pollutant" data-weather-pollutants>Loading pollutant data…</span></div>
+          <div class="weather-stat"><small>RAIN</small><b><span data-weather-rain>--</span>%</b><span>Next 3 hrs</span></div>
+        </div>
+        <div class="weather-foot"><span data-weather-updated>Updating live conditions…</span><a data-weather-source href="https://airquality.cpcb.gov.in/AQI_India/" target="_blank" rel="noopener noreferrer">Check CPCB stations ↗</a></div>
+      </section>
+
+      <section class="mobile-section-picker" aria-label="Choose a news section">
+        <label for="mobileTopicSelect"><span>BROWSE A SECTION</span><strong id="mobileTopicCurrent">Today’s briefing</strong></label>
+        <div class="mobile-select-shell">
+          <select id="mobileTopicSelect" aria-label="Choose a news section"></select>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+        </div>
+      </section>
+
+      <div class="active-filter" id="activeFilter" hidden>
+        <span>Viewing <strong id="activeFilterName"></strong></span>
+        <button id="clearFilter">Show all</button>
+      </div>
+
+      <section class="signal-ribbon" id="signalRibbon" aria-label="Edition overview">
+        <div class="pulse-label"><i></i><span>SIGNAL PULSE</span></div>
+        <div class="pulse-topics" id="pulseTopics"><span class="pulse-loading">Reading the wires…</span></div>
+        <div class="pulse-trust"><b id="pulseCount">—</b><span>TRUSTED<br>STORIES</span></div>
+      </section>
+
+      <section class="release-guide" id="releaseGuide" aria-labelledby="releaseGuideTitle" hidden>
+        <div class="release-guide-head">
+          <div><span>WATCH WITHOUT THE HUNT</span><h2 id="releaseGuideTitle">Movies & series releasing this week</h2></div>
+          <p id="releaseGuideMeta">Building this week’s watchlist…</p>
+        </div>
+        <div class="release-guide-items" id="releaseGuideItems"></div>
+      </section>
+
+      <section class="lead-grid" id="leadGrid" aria-label="Top stories">
+        <div class="lead-story skeleton-card skeleton-lead"></div>
+        <div class="side-leads"><div class="skeleton-card"></div><div class="skeleton-card"></div></div>
+      </section>
+
+      <div class="section-rule"><h2>Your briefing</h2><span id="storyCount">Curating stories…</span></div>
+      <section class="briefing-grid" id="briefingGrid" aria-live="polite"></section>
+      <button class="load-more" id="loadMore" hidden><span>Show more stories</span><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+    </main>
+
+    <aside class="right-rail">
+      <section class="rail-card weather-card desktop-weather" data-weather-card aria-label="Live local weather">
+        <div class="weather-head"><span>LIVE WEATHER</span><button data-use-location>Use my location</button></div>
+        <form class="weather-search" data-weather-search>
+          <input data-weather-query type="search" placeholder="Search address, place or landmark" autocomplete="off" aria-label="Search weather location">
+          <button type="submit">Set</button>
+        </form>
+        <div class="weather-search-results" data-weather-results hidden></div>
+        <div class="weather-content">
+          <div class="weather-primary"><span class="weather-icon" data-weather-icon>◌</span><div><strong><span data-weather-temp>--</span>°</strong><small data-weather-condition>Connecting…</small></div></div>
+          <div class="weather-place"><div><b data-weather-place>New Delhi</b><small data-weather-coordinates>28.61°, 77.21°</small></div><span>Feels like <i data-weather-feels>--</i>°</span></div>
+          <div class="weather-stat aqi-stat" title="Uses the nearest fresh CPCB station when configured; otherwise calculates the overall Indian NAQI from a regional CAMS pollution model."><small>NAQI (IN) <em data-weather-aqi-type>CHECKING</em></small><b data-weather-aqi>--</b><span data-weather-aqi-label>Loading</span><span class="aqi-station" data-weather-aqi-note>Finding nearest station…</span><span class="aqi-pollutant" data-weather-pollutants>Loading pollutant data…</span></div>
+          <div class="weather-stat"><small>RAIN</small><b><span data-weather-rain>--</span>%</b><span>Next 3 hrs</span></div>
+        </div>
+        <div class="weather-foot"><span data-weather-updated>Updating live conditions…</span><a data-weather-source href="https://airquality.cpcb.gov.in/AQI_India/" target="_blank" rel="noopener noreferrer">Check CPCB stations ↗</a></div>
+      </section>
+
+      <section class="rail-card market-card">
+        <div class="rail-title"><span>MARKET SIGNAL</span><span class="major-only">MAJOR ONLY</span></div>
+        <div class="market-score-block">
+          <div class="market-score"><strong id="marketScore">—</strong><span>/10</span></div>
+          <div class="market-score-copy"><small>INDIA MARKET IMPACT</small><b id="marketScoreLabel">Calibrating</b></div>
+        </div>
+        <div class="market-gauge"><span>QUIET</span><div class="gauge-track"><i id="marketGauge"></i></div><span>SEISMIC</span></div>
+        <p id="marketSummary">Scanning trusted reporting for events with broad India-market impact.</p>
+        <button class="text-link" data-topic="markets">Open market movers →</button>
+      </section>
+
+      <section class="rail-card queue-card">
+        <div class="rail-title"><span>READING QUEUE</span><button id="clearQueue">Clear</button></div>
+        <div id="queueList" class="queue-list"></div>
+      </section>
+
+      <section class="slow-news">
+        <span class="slow-number">01</span>
+        <div><p>THE SLOW READ</p><h3>Less noise.<br><em>More signal.</em></h3><span>Your edition checks for new reporting every 5 minutes.</span></div>
+      </section>
+    </aside>
+  </div>
+
+  <div class="overlay" id="searchOverlay" hidden>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search your news">
+      <div class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="searchInput" type="search" placeholder="Search stories, topics or sources…" autocomplete="off"><button class="close-button" data-close="searchOverlay">Esc</button></div>
+      <div class="search-results" id="searchResults"><p class="search-hint">Try “ISRO”, “semiconductors” or “Reuters”</p></div>
+    </div>
+  </div>
+
+  <div class="overlay side-overlay" id="topicsOverlay" hidden>
+    <div class="drawer" role="dialog" aria-modal="true" aria-label="Personalize topics">
+      <div class="drawer-header"><div><span class="eyebrow">PERSONALIZE</span><h2>Tune your signals</h2><p>Choose what earns a place in your daily edition.</p></div><button class="round-close" data-close="topicsOverlay">×</button></div>
+      <div class="topic-picker" id="topicPicker"></div>
+      <div class="drawer-footer"><span id="selectedCount"></span><button class="primary-button" id="saveTopics">Save my edition</button></div>
+    </div>
+  </div>
+
+  <div class="overlay" id="standardsOverlay" hidden>
+    <article class="standards-panel" role="dialog" aria-modal="true" aria-label="Editorial standards">
+      <button class="round-close" data-close="standardsOverlay">×</button>
+      <span class="eyebrow">HOW SIGNAL WORKS</span>
+      <h2>Trust is a product feature.</h2>
+      <p class="standards-intro">Signal only displays reporting from an explicit allowlist of established newsrooms, public institutions, scientific journals and specialist publications.</p>
+      <div class="standards-grid"><div><b>01</b><h3>Publisher filter</h3><p>Unknown, low-quality and unverified domains are excluded before a story reaches your screen.</p></div><div><b>02</b><h3>Source visible</h3><p>Publisher and time are prominent on every card. A click always goes to the original report.</p></div><div><b>03</b><h3>No outrage engine</h3><p>Freshness and source authority matter. Engagement bait does not influence ranking.</p></div></div>
+    </article>
+  </div>
+
+  <template id="articleTemplate">
+    <article class="story-card">
+      <div class="story-accent"></div>
+      <div class="story-content">
+        <div class="story-meta"><span class="story-topic"></span><span class="meta-dot">•</span><time></time><span class="availability-badge" hidden>Within 14 days</span></div>
+        <h3><a target="_blank" rel="noopener noreferrer"></a></h3>
+        <p class="story-preview"></p>
+        <div class="story-footer"><span class="source-name"></span><button class="bookmark" aria-label="Save to reading queue"><svg viewBox="0 0 24 24"><path d="M6 4.5A1.5 1.5 0 0 1 7.5 3h9A1.5 1.5 0 0 1 18 4.5V21l-6-3.5L6 21V4.5Z"/></svg></button></div>
+      </div>
+    </article>
+  </template>
+  <script src="/app.js?v=22" defer></script>
+</body>
+</html>

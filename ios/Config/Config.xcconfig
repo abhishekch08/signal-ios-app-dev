@@ -1,0 +1,2 @@
+SIGNAL_API_BASE_URL = https:/$()/signal-personal-news.onrender.com
+#include? "Config.local.xcconfig"

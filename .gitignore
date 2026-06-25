@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+work/
+outputs/
+*.log
+.DS_Store
+Thumbs.db
+
+# Xcode
+DerivedData/
+*.xcuserstate
+xcuserdata/
+ios/Config/Config.local.xcconfig
